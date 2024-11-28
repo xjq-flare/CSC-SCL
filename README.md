@@ -1,15 +1,3 @@
-安装matlab runtime
-
-https://ww2.mathworks.cn/help/compiler/install-the-matlab-runtime.html
-
-安装 calc_uciqe和calc_niqe
-
-unzip calc_uciqe.zip
-
-pip install calc_uciqe
-
-
-
 # A Content-Style Control Network with Style Contrastive Learning for Underwater Image Enhancement
 
 This is an implement of the CSC-SCL, "A  Content-Style Control Network with Style Contrastive Learning for Underwater Image  Enhancement", Zhenguang Wang, Huanjie Tao, Hui Zhou,  Yishi Deng, Ping Zhou.
@@ -25,13 +13,13 @@ This is an implement of the CSC-SCL, "A  Content-Style Control Network with Styl
 ### Prerequisites
 
 - Linux or macOS
-- Python 3.9 到 Python 3.11
+- Python 3.9 to Python 3.11
 - NVIDIA GPU + CUDA CuDNN
 - MATLAB Runtime R2023b
 
-### 安装python依赖
+### Installing Python Dependencies
 
-在项目根目录执行以下命令：
+Run the following commands in the project's root directory:
 
 ````bash
 pip install -r requirements.txt
@@ -41,18 +29,19 @@ pip install ./calc_uciqe
 
 ### MATLAB Runtime
 
-计算uciqe时需要使用MATLAB Runtime，请按照链接https://ww2.mathworks.cn/help/compiler/install-the-matlab-runtime.html安装并配置MATLAB Runtime R2023b。
+MATLAB Runtime is required for calculating UCIQE. Please install and configure MATLAB Runtime R2023b by following the instructions at: https://ww2.mathworks.cn/help/compiler/install-the-matlab-runtime.html.
+
+Note: Using MATLAB Runtime to calculate UCIQE requires Python version 3.9 to 3.11.
 
 ## Testing
 
-1. 下载预训练模型，链接为：https://pan.baidu.com/s/1IfPyrHzexqvt-7-0PRyyJg?pwd=5r9x
-   解压并放到`checkpoints`目录下：
-
+1. Download the pretrained model from the following link: https://pan.baidu.com/s/1IfPyrHzexqvt-7-0PRyyJg?pwd=5r9x, Extract and place it in the `checkpoints` directory:
+   
    ```bash
    unzip pretrained_models.zip -d ./checkpoints/pretrained_models
    ```
-
-2. 准备数据集，并放到`datasets`目录下，目录结构如下：
+   
+2. Prepare the dataset and place it in the `datasets` directory with the following structure:
    ```bash
    UIEB_HCLR/
    ├── testA
@@ -66,18 +55,18 @@ pip install ./calc_uciqe
    └── valB_gt
    ```
 
-   或下载我们的UIEB数据集划分，链接为：https://pan.baidu.com/s/1ngu4L0dowEQkfidg5Pv4SA?pwd=5izk
+   Alternatively, download our UIEB dataset split from the following link: https://pan.baidu.com/s/1ngu4L0dowEQkfidg5Pv4SA?pwd=5izk.
 
    ```bash
    unzip UIEB_dataset.zip -d ./datasets/UIEB_dataset
    ```
 
-3. 运行测试脚本：
+3. Run the testing script:
    ```bash
    ./scripts/inference_calc_metrics.sh pretrained_models UIEB_dataset
    ```
 
-   或依次运行脚本进行推理和计算评价指标：
+   Or run the scripts step by step for inference and metric calculation:
    
    ```bash
    # inference
@@ -88,13 +77,13 @@ pip install ./calc_uciqe
 
 ## Training
 
-首先，训练一个特征提取器。
+First, train a feature extractor:
 
 ```bash
 python ./contrast/pretrain_extractor.py
 ```
 
-然后训练水下图像增强模型。
+Then, train the underwater image enhancement model and specify the feature extractor path.
 
 ```bash
 python train.py --dataroot ./datasets/UIEB_HCLR --name uieb_perc1rn800_cont1e800_cc_bn_up_sc_aug_800 --model cycle_gan --netG resnet_9blocks_cc_up_sc --has_perc --has_cont --cont extractor --extr_path "./checkpoints/type_extractor/uieb_cc_sc_400/400_net_E.pth" --load_size 256 --preprocess augmentation --n_epochs 300 --n_epochs_decay 500 --save_epoch_freq 50 --batch_size 2 --gpu_ids 0
@@ -107,3 +96,4 @@ This repository contains modified codes from:
 * [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
 * [Image-quality-measure-method](https://github.com/Owen718/Image-quality-measure-method)
 * [DAC](https://github.com/sangrokleeeeee/DAC)
+* [TACL](https://github.com/Jzy2017/TACL)
