@@ -6,7 +6,7 @@ This is an implement of the CSC-SCL, "A  Content-Style Control Network with Styl
 
 
 
-<img src=".\Overview.png" alt="Overview" style="zoom: 80%;" />
+<img src=".\Overview.png" alt="Overview" style="zoom: 60%;" />
 
 ## Preparation
 
