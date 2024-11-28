@@ -75,6 +75,8 @@ Note: Using MATLAB Runtime to calculate UCIQE requires Python version 3.9 to 3.1
    python calc_metrics.py --gen ./results/pretrained_models/test_800/images --gt ./datasets/UIEB_dataset/testB_gt --single
    ```
 
+You can find the enhanced images in the `results` directory.
+
 ## Training
 
 First, train a feature extractor:
@@ -88,6 +90,8 @@ Then, train the underwater image enhancement model and specify the feature extra
 ```bash
 python train.py --dataroot ./datasets/UIEB_HCLR --name uieb_perc1rn800_cont1e800_cc_bn_up_sc_aug_800 --model cycle_gan --netG resnet_9blocks_cc_up_sc --has_perc --has_cont --cont extractor --extr_path "./checkpoints/type_extractor/uieb_cc_sc_400/400_net_E.pth" --load_size 256 --preprocess augmentation --n_epochs 300 --n_epochs_decay 500 --save_epoch_freq 50 --batch_size 2 --gpu_ids 0
 ```
+
+You can find the saved model parameters in the `checkpoints` directory.
 
 ## Acknowledgement
 
