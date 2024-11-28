@@ -2,9 +2,14 @@ if __name__ == '__main__':
     import sys
     sys.path.insert(0, '../')
 
-import calc_uciqe
-import calc_niqe
-import matlab
+
+try:
+    import calc_uciqe
+    import calc_niqe
+    import matlab
+except Exception as e:
+    print(e)
+    pass
 
 import os
 import cv2
