@@ -1,0 +1,8 @@
+torch
+torchvision
+timm
+dominate
+visdom
+opencv-python
+torchmetrics
+scikit-image

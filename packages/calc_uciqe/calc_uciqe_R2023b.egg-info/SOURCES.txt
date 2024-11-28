@@ -1,0 +1,7 @@
+setup.py
+calc_uciqe/__init__.py
+calc_uciqe/calc_uciqe.ctf
+calc_uciqe_R2023b.egg-info/PKG-INFO
+calc_uciqe_R2023b.egg-info/SOURCES.txt
+calc_uciqe_R2023b.egg-info/dependency_links.txt
+calc_uciqe_R2023b.egg-info/top_level.txt
