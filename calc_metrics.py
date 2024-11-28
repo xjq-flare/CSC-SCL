@@ -2,13 +2,16 @@ has_mr = True
 try:
     import calc_uciqe
     import matlab
-except ImportError as e:
+except Exception as e:
+    print(e)
+    RED = '\033[91m'
+    RESET = '\033[0m'
     warning_message = (
-        "MATLAB Runtime is not installed or not correctly configured. "
-        "The UCIQE metric cannot be calculated. Please install MATLAB Runtime by following the instructions at"
+        "UCIQE metric cannot be calculated because MATLAB Runtime is not installed or not correctly configured. "
+        "Please install MATLAB Runtime by following the instructions at "
         "https://ww2.mathworks.cn/help/compiler/install-the-matlab-runtime.html"
     )
-    print(warning_message)
+    print(RED + warning_message + RESET)
     has_mr = False
 
 import os
@@ -59,13 +62,14 @@ def calc_metrics_with_gt(gen_folder, gt_folder):
                     uciqe_value = my_calc_uciqe.calc_uciqe(os.path.abspath(gen_img_path), matlab.int32(list(size_no_ref)))
                 else:
                     uciqe_value = my_calc_uciqe.calc_uciqe(os.path.abspath(gen_img_path))
-                count += 1
             except ZeroDivisionError as e:
                 print(e)
                 print(f"img: {gen_img_path}")
                 continue
         else:
             uciqe_value = 0
+
+        count += 1
 
         UIQM.append(uiqm_value)
         UICM.append(uicm_value)
@@ -163,7 +167,7 @@ if __name__ == "__main__":
     gen_folder = opt.gen
     gt_folder = opt.gt
 
-    if opt.noref or opt.only_niqe or (opt.gen and not opt.gt):
+    if opt.noref or (opt.gen and not opt.gt):
         metrics_str = calc_metrics_without_gt(os.path.abspath(gen_folder))
         print_write(gen_folder, '', metrics_str)
     else:
