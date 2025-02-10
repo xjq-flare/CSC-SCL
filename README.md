@@ -1,6 +1,6 @@
 # A Content-Style Control Network with Style Contrastive Learning for Underwater Image Enhancement
 
-This is an implement of the CSC-SCL, "A  Content-Style Control Network with Style Contrastive Learning for Underwater Image  Enhancement", Zhenguang Wang, Huanjie Tao, Hui Zhou,  Yishi Deng, Ping Zhou.
+This is an implement of the CSC-SCL, "[A  Content-Style Control Network with Style Contrastive Learning for Underwater Image  Enhancement](https://link.springer.com/article/10.1007/s00530-024-01642-z?utm_source=rct_congratemailt&utm_medium=email&utm_campaign=nonoa_20250109&utm_content=10.1007%2Fs00530-024-01642-z "link to the paper")", Zhenguang Wang, Huanjie Tao, Hui Zhou,  Yishi Deng, Ping Zhou.
 
 ## Overview
 
